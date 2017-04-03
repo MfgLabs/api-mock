@@ -17,7 +17,7 @@ class CorsSupport
         res.set 'Access-Control-Allow-Headers', options.headers
 
         if 'OPTIONS' == req.method
-          res.send(200);
+          res.sendStatus(200);
         else
           next()
 
