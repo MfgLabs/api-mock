@@ -6,7 +6,7 @@ class CorsSupport
     options =
       origin: '*'
       methods: 'GET, PUT, POST, PATCH, DELETE, TRACE, OPTIONS'
-      headers: 'Origin, X-Requested-With, Content-Type, Accept, Authorization, Referer, Prefer'
+      headers: 'Origin, X-Requested-With, Content-Type, Accept, Authorization, Referer, Prefer, UserTimeZone'
 
     app.all '*', (req, res, next) ->
       unless req.get('Origin')
