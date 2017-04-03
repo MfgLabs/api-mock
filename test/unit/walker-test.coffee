@@ -26,15 +26,15 @@ describe 'walker', () ->
     payload = {}
 
     beforeEach () ->
-      sinon.stub app, 'get', (path, callback) ->
+      sinon.stub(app, 'get').callsFake (path, callback) ->
         # callback()
-      sinon.stub app, 'post', (path, callback) ->
+      sinon.stub(app, 'post').callsFake (path, callback) ->
         # callback()
-      sinon.stub app, 'put', (path, callback) ->
+      sinon.stub(app, 'put').callsFake (path, callback) ->
         # callback()
-      sinon.stub app, 'delete', (path, callback) ->
+      sinon.stub(app, 'delete').callsFake (path, callback) ->
         # callback()
-      sinon.stub app, 'patch', (path, callback) ->
+      sinon.stub(app, 'patch').callsFake (path, callback) ->
         # callback()
       payload =
         warnings: []
@@ -260,8 +260,8 @@ describe 'walker', () ->
     describe 'when there are problems converting the payload', ()->
 
       beforeEach ()->
-        sinon.stub winstonStub, 'warn'
-        sinon.stub winstonStub, 'error'
+        sinon.stub(winstonStub, 'warn')
+        sinon.stub(winstonStub, 'error')
         payload.warnings =  [
             "Minor problem"
           ]
@@ -289,7 +289,7 @@ describe 'walker', () ->
         app.get.restore()
 
       afterEach () ->
-        sinon.stub app, 'get', () -> {}
+        sinon.stub(app, 'get').callsFake () -> {}
 
       it 'should send successfully', (done) ->
         walker(app, resourceGroups)
@@ -313,7 +313,7 @@ describe 'walker', () ->
         describe 'and prefered response does not exist', () ->
 
           beforeEach ()->
-            sinon.stub winstonStub, 'warn'
+            sinon.stub(winstonStub, 'warn')
 
           afterEach ()->
             winstonStub.warn.restore()
@@ -327,6 +327,3 @@ describe 'walker', () ->
               .end (err, res) ->
                 assert.ok winstonStub.warn.called
                 done()
-
-
-

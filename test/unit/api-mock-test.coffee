@@ -104,11 +104,11 @@ describe 'ApiMock class', () ->
         describe 'with valid routes', () ->
 
           beforeEach () ->
-            sinon.stub api_mock.app, 'listen', (port)->
+            sinon.stub(api_mock.app, 'listen').callsFake (port)->
               {}
-            sinon.stub fsStub, 'readFileSync', (path, enc) ->
+            sinon.stub(fsStub, 'readFileSync').callsFake (path, enc) ->
               {}
-            sinon.stub protagonistStub, 'parse', (data, type, callback) ->
+            sinon.stub(protagonistStub, 'parse').callsFake (data, type, callback) ->
               result =
                 ast:
                   resourceGroups: [
@@ -135,11 +135,11 @@ describe 'ApiMock class', () ->
         describe 'with error while listening', () ->
 
           beforeEach () ->
-            sinon.stub api_mock.app, 'listen', (port)->
+            sinon.stub(api_mock.app, 'listen').callsFake (port)->
               throw new Error('Error starting server')
-            sinon.stub fsStub, 'readFileSync', (path, enc) ->
+            sinon.stub(fsStub, 'readFileSync').callsFake (path, enc) ->
               {}
-            sinon.stub protagonistStub, 'parse', (data, type, callback) ->
+            sinon.stub(protagonistStub, 'parse').callsFake (data, type, callback) ->
               result =
                 ast:
                   resourceGroups: [
@@ -161,9 +161,9 @@ describe 'ApiMock class', () ->
 
           beforeEach () ->
             walkerStub.throws(new Error('Error walking routes'))
-            sinon.stub fsStub, 'readFileSync', (path, enc) ->
+            sinon.stub(fsStub, 'readFileSync').callsFake (path, enc) ->
               {}
-            sinon.stub protagonistStub, 'parse', (data, type, callback) ->
+            sinon.stub(protagonistStub, 'parse').callsFake (data, type, callback) ->
               result =
                 ast:
                   resourceGroups: [
@@ -185,9 +185,9 @@ describe 'ApiMock class', () ->
       describe 'with error parsing blueprint', () ->
 
         beforeEach () ->
-          sinon.stub fsStub, 'readFileSync', (path, enc) ->
+          sinon.stub(fsStub, 'readFileSync').callsFake (path, enc) ->
             {}
-          sinon.stub protagonistStub, 'parse', (data, type, callback) ->
+          sinon.stub(protagonistStub, 'parse').callsFake (data, type, callback) ->
             callback(new Error('Error parsing blueprint'), null)
 
         afterEach () ->
@@ -200,7 +200,7 @@ describe 'ApiMock class', () ->
     describe 'with error reading blueprint', () ->
 
       beforeEach () ->
-        sinon.stub fsStub, 'readFileSync', (path, enc) ->
+        sinon.stub(fsStub, 'readFileSync').callsFake (path, enc) ->
           throw new Error('Error reading file')
 
       afterEach () ->

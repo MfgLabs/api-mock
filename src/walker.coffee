@@ -25,7 +25,8 @@ walker = (app, resourceGroups) ->
         headerValue = value['value']
         res.setHeader headerName, headerValue
       res.setHeader 'Content-Length', Buffer.byteLength(response.body)
-      res.send response.status, response.body
+      res.setHeader 'Status', response.status
+      res.send(response.body)
 
   responses = []
 
